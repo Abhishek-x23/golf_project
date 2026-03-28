@@ -1,20 +1,19 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/e1c349bb-13ea-45b3-8bb7-32e2bdd2837e
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Golf Charity Subscription Platform
+A modern platform combining golf tracking, charity fundraising, and monthly prize draws.
+🚀 Key Features
+Golf Tracking: Manage your last 5 Stableford scores (1-45 range).
+Prize Draws: Monthly draws with 3, 4, and 5-number match tiers.
+Charity Support: 10% of subscriptions go to your chosen charity.
+Admin Center: Manage users, draws, charities, and verify winners.
+Premium UI: Built with React, Tailwind CSS, and Framer Motion.
+🔐 Admin Access
+Bootstrap Admin: aseth6779@gmail.com (Auto-granted full access on login).
+Manual Promotion: Change role to "admin" in the Firestore users collection.
+Privileges: Manage users, run/publish draws, edit charities, and verify payouts.
+🛠️ Tech Stack
+Frontend: React 19, Vite, Tailwind CSS, Framer Motion.
+Backend: Firebase (Auth & Firestore).
+📦 Getting Started
+Login: Sign in via Google.
+Dashboard: Enter scores and select a charity.
+Admin: Access /admin if logged in as the bootstrap admin.
