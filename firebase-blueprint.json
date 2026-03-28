@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and subscription details",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["subscriber", "admin"] },
+        "subscriptionStatus": { "type": "string", "enum": ["active", "inactive", "lapsed"] },
+        "subscriptionPlan": { "type": "string", "enum": ["monthly", "yearly"] },
+        "renewalDate": { "type": "string", "format": "date-time" },
+        "charityId": { "type": "string" },
+        "charityPercentage": { "type": "number", "description": "Percentage of subscription fee donated (min 10)" },
+        "totalWinnings": { "type": "number" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Score": {
+      "title": "Score",
+      "description": "Golf score in Stableford format",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "score": { "type": "integer", "minimum": 1, "maximum": 45 },
+        "date": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "score", "date"]
+    },
+    "Charity": {
+      "title": "Charity",
+      "description": "Charity profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "image": { "type": "string" },
+        "totalDonations": { "type": "number" },
+        "featured": { "type": "boolean" }
+      },
+      "required": ["id", "name"]
+    },
+    "Draw": {
+      "title": "Draw",
+      "description": "Monthly prize draw",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "winningNumbers": { "type": "array", "items": { "type": "integer" } },
+        "prizePoolTotal": { "type": "number" },
+        "status": { "type": "string", "enum": ["simulated", "published"] },
+        "jackpotRollover": { "type": "number" }
+      },
+      "required": ["id", "date", "status"]
+    },
+    "Winner": {
+      "title": "Winner",
+      "description": "Winner of a draw",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "drawId": { "type": "string" },
+        "uid": { "type": "string" },
+        "matchType": { "type": "integer", "enum": [3, 4, 5] },
+        "prizeAmount": { "type": "number" },
+        "proofUrl": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "paid", "rejected"] }
+      },
+      "required": ["id", "drawId", "uid", "matchType", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": { "schema": "User", "description": "User profiles" },
+    "/users/{userId}/scores/{scoreId}": { "schema": "Score", "description": "User golf scores" },
+    "/charities/{charityId}": { "schema": "Charity", "description": "Charity directory" },
+    "/draws/{drawId}": { "schema": "Draw", "description": "Monthly draws" },
+    "/winners/{winnerId}": { "schema": "Winner", "description": "Draw winners" }
+  }
+}
